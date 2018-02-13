@@ -196,6 +196,15 @@ static void collectNonTextDescendants(RCTTextView *view, NSMutableArray *nonText
   return _textStorage.string;
 }
 
+- (NSString *)accessibilityValue
+{
+    NSString *superAccessibilityValue = [super accessibilityValue];
+    if (superAccessibilityValue && superAccessibilityValue.length > 0) {
+        return superAccessibilityValue;
+    }
+    return _textStorage.string.length ? _textStorage.string : @"";
+}
+
 #pragma mark - Context Menu
 
 - (void)enableContextMenu
